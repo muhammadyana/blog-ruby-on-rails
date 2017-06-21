@@ -4,8 +4,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+    @articleOrder = Article.order('created_at DESC').page(params[:page]).per(4)
     @articles = Article.all.page(params[:page]).per(4)
-    @widgetArticle = Article.all
+    @widgetArticle = Article.all.page(params[:page]).per(4)
     
   end
 

@@ -1,14 +1,9 @@
 /* -----------------------------------------------------------------------------
 
-I'm Mat - Material Personal Resume vCard Template
-
-File:           Base SCSS File
-Version:        1.2
-Last change:    08/06/16 
-Author:         Suelo 
-
 -------------------------------------------------------------------------------- */
+$(document).ready(function (){
 
+});
 "use strict";
 
 var $body = $('body');

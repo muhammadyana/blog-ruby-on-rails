@@ -43,7 +43,7 @@
         /! Posts List
         .masonry.row
           .masonry-sizer.col-sm-6.col-xs-12
-          - @articles.each do |article|
+          - @articleOrder.each do |article|
             .masonry-item.col-sm-6.col-xs-12
               /! Post
               article.post.item
@@ -53,9 +53,9 @@
                   ul.post-meta
                     li
                       i.fa.fa-clock-o
-                      span = time_ago_in_words(article.created_at)
-                        ago
-                      
+                      span 
+                        =time_ago_in_words(article.created_at)
+                        |  ago
                       //span = time_ago_in_words(article.updated_at)
                     / li
                     /   i.ti-tag
@@ -64,7 +64,7 @@
                   h2
                     = link_to article.title, article_path(article)
                     
-                  p = truncate(article.description, length: 100).html_safe 
+                  p = article.description[0..120].html_safe
                   = link_to article_path(article), class: 'more'
                   
                     span
