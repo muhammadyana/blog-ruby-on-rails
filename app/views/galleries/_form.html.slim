@@ -1,0 +1,10 @@
+= simple_form_for(@gallery) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, collection: gallery_option_names , include_blank: 'Please select'
+    = f.cktext_area :description
+    = f.input :image
+
+  .form-actions
+    = f.button :submit

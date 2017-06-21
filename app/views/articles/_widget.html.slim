@@ -1,0 +1,42 @@
+    .col-md-3
+      .sidebar.clearfix
+        /! Widget - About
+        .widget.widget-about
+          = image_tag 'yana.jpg'
+          
+          .text
+            .typing-wrapper
+              span.typing Hi! I’m Muhammad Yana Mulyana. Ruby on Rails Developer at 41studio
+        /! Widget - Search
+        .widget.widget-search
+          form#search-widget-form.validate-form
+            .form-group.input-wrapper
+              input.form-control required="" type="text" /
+              span.input-label Search
+        /! Latest Posts
+        .widget.widget-posts
+          h6.text-muted Latest Posts
+          ul.list-posts
+            - @widgetArticle.each do |article|
+              li
+                = link_to article_path(article)
+                  = image_tag article.image_url(:thumb)
+                .post-content
+                  = link_to article.title, article_path(article)
+                  span.date = article.created_at
+              
+        /! Widget - Twitter
+        .widget.widget-twitter
+          h6.text-uppercase.text-muted Latest Tweets
+          .twitter-feed data-count="2" 
+        /! Widget - Newsletter
+        .widget.widget-newsletter.dark
+          h6.text-uppercase Subscribe Me!
+          form#sign-in-form-2.sign-in-form.validate-form action="http://suelo.us12.list-manage1.com/subscribe/post-json" method="POST" 
+            .input-wrapper
+              input name="u" type="hidden" value="ed47dbfe167d906f2bc46a01b" /
+              input name="id" type="hidden" value="24ac8a22ad" /
+              input.form-control name="MERGE0" required="" size="25" type="email" value="" /
+              span.input-label Your e-mail
+            button.btn.btn-filled.btn-sm.btn-submit.btn-block.btn-white type="submit" 
+              span Sign In

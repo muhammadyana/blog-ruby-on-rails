@@ -1,0 +1,112 @@
+- model_class = Article
+.page-header
+  /h1=t '.title', default: model_class.model_name.human.pluralize.titleize
+/ table.table.table-striped
+/   thead
+/     tr
+/       th= model_class.human_attribute_name(:id)
+/       th= model_class.human_attribute_name(:title)
+/       th= model_class.human_attribute_name(:description)
+/       th= model_class.human_attribute_name(:image)
+/       th= model_class.human_attribute_name(:created_at)
+/       th=t '.actions', default: t("helpers.actions")
+/   tbody
+/     - @articles.each do |article|
+/       tr
+/         td= article.id
+/         td= article.title
+/         td= article.description
+/         td= image_tag article.image_url(:thumb)
+/         td=l article.created_at, format: :long
+/         td
+/           = link_to article_path(article), class: 'btn btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
+/             = glyph 'info-sign'
+/           = link_to edit_article_path(article), class: 'btn btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do
+/             = glyph 'pencil'
+/           = link_to article_path(article), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }" do
+/             = glyph 'remove'
+
+/ = link_to t('.new', default: t("helpers.links.new")), new_article_path, class: 'btn btn-primary'
+/! Content
+#content.container
+  .row
+    /! Page Content
+    .col-md-9
+      .page-content
+        /! Breadcrumb
+        ol.breadcrumb
+          li
+            = link_to root_path
+              i.fa.fa-home
+          li.active = t '.title', default: model_class.model_name.human.pluralize.titleize
+        h3.content-title.text-muted 
+        /! Posts List
+        .masonry.row
+          .masonry-sizer.col-sm-6.col-xs-12
+          - @articles.each do |article|
+            .masonry-item.col-sm-6.col-xs-12
+              /! Post
+              article.post.item
+                .post-image
+                  = image_tag article.image_url
+                .post-content
+                  ul.post-meta
+                    li
+                      i.fa.fa-clock-o
+                      span = time_ago_in_words(article.created_at)
+                        ago
+                      
+                      //span = time_ago_in_words(article.updated_at)
+                    / li
+                    /   i.ti-tag
+                    /   span
+                    /     a href="#"  Webdesign
+                  h2
+                    = link_to article.title, article_path(article)
+                    
+                  p = truncate(article.description, length: 100).html_safe 
+                  = link_to article_path(article), class: 'more'
+                  
+                    span
+          .masonry-item.col-sm-6.col-xs-12
+          
+        /! Pagination
+        ul.pagination
+          li 
+            = paginate @articles
+            
+        / ul.pagination
+        /   li
+        /     a aria-label="Previous" href="#" 
+        /       i.fa.fa-angle-left
+        /   li.active
+        /     a href="#"  1
+        /   li
+        /     a href="#"  2
+        /   li
+        /     a href="#"  3
+        /   li
+        /     a href="#"  4
+        /   li
+        /     a href="#"  5
+        /   li
+        /     a aria-label="Next" href="#" 
+        /       i.fa.fa-angle-right
+    /! Sidebar
+    = render 'widget'
+/! Content / End
+#share-it
+  = link_to new_article_path, class: 'icon icon-circle'
+  
+    i.fa.fa-pencil
+  / ul.share-list
+  /   li
+  /     a.icon.icon-circle.icon-google-plus href="#" 
+  /       i.fa.fa-google-plus
+  /   li
+  /     a.icon.icon-circle.icon-twitter href="#" 
+  /       i.fa.fa-twitter
+  /   li
+  /     a.icon.icon-circle.icon-facebook href="#" 
+  /       i.fa.fa-facebook
+
