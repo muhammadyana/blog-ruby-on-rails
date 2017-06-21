@@ -57,10 +57,11 @@
                         =time_ago_in_words(article.created_at)
                         |  ago
                       //span = time_ago_in_words(article.updated_at)
-                    / li
-                    /   i.ti-tag
-                    /   span
-                    /     a href="#"  Webdesign
+                    li
+                      i.fa.fa-user
+                      span
+                        = link_to  article.user.username if article.user
+                        
                   h2
                     = link_to article.title, article_path(article)
                     
