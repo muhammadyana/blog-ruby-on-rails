@@ -16,5 +16,5 @@
 //= require bootstrap-sprockets
 //= require plugins
 //= require core
-//= require turbolinks
+
 //= require_tree .
