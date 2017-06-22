@@ -1,19 +1,23 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_user, except: [:index, :show] #can't create article without login
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   # GET /articles
   # GET /articles.json
   def index
-    @articleOrder = Article.order('created_at DESC').page(params[:page]).per(4)
-    @articles = Article.all.page(params[:page]).per(4)
-    @widgetArticle = Article.all.page(params[:page]).per(4)
+    #@articles = Article.all
+    @articleOrder = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
+    @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
+    # all.page(params[:page]).per(4)
+    @article_paginate = Article.paginate(page: params[:page], :per_page => 4)
+    @widgetArticle = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 3)
     
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @widgetArticle = Article.all.page(params[:page]).per(2)
+    @widgetArticle = Article.all.paginate(page: params[:page], :per_page => 3)
   end
 
   # GET /articles/new
@@ -29,7 +33,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -73,6 +77,13 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :image)
+      params.require(:article).permit(:title, :description, :image, :meta_keyword)
+    end
+
+    def require_same_user
+      if current_user != @article.user
+        flash[:danger] = "you can only edit or delete ypur own article"
+        redirect_to root_path
+      end
     end
 end

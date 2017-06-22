@@ -7,6 +7,7 @@ class Article < ApplicationRecord
 	validates :title, :description, :image, presence: true
 	validates :title, uniqueness: true
 	validates :user_id, presence: true
+	validates :meta_keyword, presence: true
 	mount_uploader :image, ArticlesUploader
 	private
 		def send_email

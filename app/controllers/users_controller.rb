@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    @user_articles_count = @user_articles
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @user_articles = @user.articles.paginate(page: params[:page], :per_page => 4)
   end
 
   # GET /users/new
@@ -29,7 +32,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to articles_path, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to user_path(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -65,11 +69,18 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :username, :email, :password)
+    end
+    #cant't edit or delete if user not belong to owner user
+    def require_same_user
+      if current_user != @user
+        flash[:danger] = "You only can edit or delet your own user"
+        redirect_to root_path
+      end
     end
 end

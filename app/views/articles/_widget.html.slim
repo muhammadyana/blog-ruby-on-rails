@@ -2,11 +2,23 @@
       .sidebar.clearfix
         /! Widget - About
         .widget.widget-about
-          = image_tag 'yana.jpg'
+          / = garavatar_for(@articles.user)
+          / = image_tag 'yana.jpg'
+          = link_to gravatar_origin(@article.user), user_path(@article.user), class:'text-center'
+          br
+          h4
+            / | Total Article 
+            / = @article.user.articles.count
+
           
           .text
             .typing-wrapper
-              span.typing Hi! I’m Muhammad Yana Mulyana. Ruby on Rails Developer at 41studio
+              span.typing 
+                | Hi! I'm 
+                = @article.user.name
+                |  Content writer at muhammadyana.web.id 
+                |  my article is  
+                = @article.user.articles.count
         /! Widget - Search
         .widget.widget-search
           form#search-widget-form.validate-form
@@ -26,9 +38,9 @@
                   span.date = article.created_at
               
         /! Widget - Twitter
-        .widget.widget-twitter
-          h6.text-uppercase.text-muted Latest Tweets
-          .twitter-feed data-count="2" 
+        / .widget.widget-twitter
+        /   h6.text-uppercase.text-muted Latest Tweets
+        /   .twitter-feed data-count="2" 
         /! Widget - Newsletter
         .widget.widget-newsletter.dark
           h6.text-uppercase Subscribe Me!

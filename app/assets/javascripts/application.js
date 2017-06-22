@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
+//= require jquery.turbolinks
+//= require jquery_ujs
 //= require ckeditor/init
 //= require bootstrap-sprockets
 //= require plugins
 //= require core
-
+//= require turbolinks
 //= require_tree .
+

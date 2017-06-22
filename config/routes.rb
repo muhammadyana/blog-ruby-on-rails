@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
-  resources :users, except: :new
+  resources :categories
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
+  get 'session/new'
+  get 'users/index'
+  resources :users
   mount Ckeditor::Engine => '/ckeditor'
   resources :articles
   resources :galleries
   resources :companies
   resources :products
-  get 'signup', to: 'users#new', as: 'new_user'
+  get 'signup', to: 'users#new'
   
   # get 'users', to: 'users#index'
   #get 'pages/home'

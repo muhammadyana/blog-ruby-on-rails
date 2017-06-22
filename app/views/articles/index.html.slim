@@ -41,40 +41,7 @@
           li.active = t '.title', default: model_class.model_name.human.pluralize.titleize
         h3.content-title.text-muted 
         /! Posts List
-        .masonry.row
-          .masonry-sizer.col-sm-6.col-xs-12
-          - @articleOrder.each do |article|
-            .masonry-item.col-sm-6.col-xs-12
-              /! Post
-              article.post.item
-                .post-image
-                  = image_tag article.image_url
-                .post-content
-                  ul.post-meta
-                    li
-                      i.fa.fa-clock-o
-                      span 
-                        =time_ago_in_words(article.created_at)
-                        |  ago
-                      //span = time_ago_in_words(article.updated_at)
-                    li
-                      i.fa.fa-user
-                      span
-                        = link_to  article.user.username if article.user
-                        
-                  h2
-                    = link_to article.title, article_path(article)
-                    
-                  p = article.description[0..120].html_safe
-                  = link_to article_path(article), class: 'more'
-                  
-                    span
-          .masonry-item.col-sm-6.col-xs-12
-          
-        /! Pagination
-        ul.pagination
-          li 
-            = paginate @articles
+        = render 'articles'
             
         / ul.pagination
         /   li
@@ -94,7 +61,56 @@
         /     a aria-label="Next" href="#" 
         /       i.fa.fa-angle-right
     /! Sidebar
-    = render 'widget'
+    .col-md-3
+      .sidebar.clearfix
+        /! Widget - About
+        .widget.widget-about
+          / = garavatar_for(@articles.user)
+          = image_tag 'yana.jpg', class:'text-center'
+          
+          br
+          h4
+            / | Total Article 
+            / = @article.user.articles.count
+
+          
+          .text
+            .typing-wrapper
+              span.typing Hi! I'm Muhammad Yana Mulyana, Ruby on Rails web developer at 41studio. Please share anything that u've in this site :)
+                
+        /! Widget - Search
+        .widget.widget-search
+          form#search-widget-form.validate-form
+            .form-group.input-wrapper
+              input.form-control required="" type="text" /
+              span.input-label Search
+        /! Latest Posts
+        .widget.widget-posts
+          h6.text-muted Latest Posts
+          ul.list-posts
+            - @widgetArticle.each do |article|
+              li
+                = link_to article_path(article)
+                  = image_tag article.image_url(:thumb)
+                .post-content
+                  = link_to article.title, article_path(article)
+                  span.date = article.created_at
+              
+        /! Widget - Twitter
+        / .widget.widget-twitter
+        /   h6.text-uppercase.text-muted Latest Tweets
+        /   .twitter-feed data-count="2" 
+        /! Widget - Newsletter
+        .widget.widget-newsletter.dark
+          h6.text-uppercase Subscribe Me!
+          form#sign-in-form-2.sign-in-form.validate-form action="http://suelo.us12.list-manage1.com/subscribe/post-json" method="POST" 
+            .input-wrapper
+              input name="u" type="hidden" value="ed47dbfe167d906f2bc46a01b" /
+              input name="id" type="hidden" value="24ac8a22ad" /
+              input.form-control name="MERGE0" required="" size="25" type="email" value="" /
+              span.input-label Your e-mail
+            button.btn.btn-filled.btn-sm.btn-submit.btn-block.btn-white type="submit" 
+              span Sign In
 /! Content / End
 #share-it
   = link_to new_article_path, class: 'icon icon-circle'

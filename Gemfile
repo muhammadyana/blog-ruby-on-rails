@@ -35,6 +35,9 @@ gem 'friendly_id', '~> 5.1.0'
 gem "font-awesome-rails"
 gem 'kaminari'
 gem 'ckeditor'
+gem 'metamagic'
+gem 'will_paginate', '~> 3.1.1'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

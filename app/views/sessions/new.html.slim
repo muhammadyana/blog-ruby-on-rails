@@ -1,0 +1,21 @@
+h1 Sessions#new
+p Find me in app/views/sessions/new.html.slim
+.container
+	= form_for(:session, :html => { class: 'form-horizontal', role: 'form' }, url: login_path) do |f|
+		form#contact-form.contact-form.validate-form
+	        .row
+	          .col-sm-6
+	            .form-group.input-wrapper
+	              = f.email_field :email, class: 'form-control'
+	              / input.form-control name="name" required="" type="text" /
+	              span.input-label Email
+	        .row
+	          .col-sm-6
+	            .form-group.input-wrapper
+	              = f.password_field :password, class: 'form-control'
+	              / input.form-control name="email" required="" type="email" /
+	              span.input-label Password
+	        
+	        .row
+	          .col-sm-6
+	          	= f.submit 'Sign in', class: 'btn btn-primary green btn-submit'
