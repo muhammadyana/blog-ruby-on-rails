@@ -21,7 +21,7 @@
                         span
                           = link_to article.user.username, user_path(article.user.username) if article.user
                           
-                    h2
+                    h3.text-bold
                       = link_to article.title, article_path(article)
                       
                     p = article.description[0..120].html_safe

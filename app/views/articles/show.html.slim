@@ -51,7 +51,10 @@
             ul.post-meta
               li
                 i.fa.fa-clock-o
-                span = @article.created_at
+                span
+                  | Posted at 
+                  = time_ago_in_words(@article.created_at)
+                  |  Ago
               li
                 i.fa.fa-user
                 span

@@ -111,7 +111,9 @@
               span.input-label Your e-mail
             button.btn.btn-filled.btn-sm.btn-submit.btn-block.btn-white type="submit" 
               span Sign In
-/! Content / End
+    .col-lg-12.col-md-12
+      .page-content
+        = render 'article-corousal'
 #share-it
   = link_to new_article_path, class: 'icon icon-circle'
   

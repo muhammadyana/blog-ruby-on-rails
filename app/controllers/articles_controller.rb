@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
     @articleOrder = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
     @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
     # all.page(params[:page]).per(4)
+    @articles_corousal = Article.all
     @article_paginate = Article.paginate(page: params[:page], :per_page => 4)
     @widgetArticle = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 3)
     

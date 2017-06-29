@@ -4,7 +4,6 @@ table
   thead
     tr
       th Name
-      th Slug
       th
       th
       th
@@ -13,7 +12,6 @@ table
     - @categories.each do |category|
       tr
         td = category.name
-        td = category.slug
         td = link_to 'Show', category
         td = link_to 'Edit', edit_category_path(category)
         td = link_to 'Destroy', category, data: { confirm: 'Are you sure?' }, method: :delete
