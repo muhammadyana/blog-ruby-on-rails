@@ -31,7 +31,25 @@ html lang="en"
     /     circle.circle cx="33" cy="33" fill="none" r="30" stroke-linecap="round" stroke-width="3" 
 
     / = render '/layouts/background'
-      
+    // javascript:
+    //   window.fbAsyncInit = function() {
+    //     FB.init({
+    //       appId      : '306389116161265',
+    //       cookie     : true,
+    //       xfbml      : true,
+    //       version    : 'v2.8'
+    //     });
+    //     FB.AppEvents.logPageView();   
+    //   };
+
+    //   (function(d, s, id){
+    //      var js, fjs = d.getElementsByTagName(s)[0];
+    //      if (d.getElementById(id)) {return;}
+    //      js = d.createElement(s); js.id = id;
+    //      js.src = "//connect.facebook.net/en_US/sdk.js";
+    //      fjs.parentNode.insertBefore(js, fjs);
+    //    }(document, 'script', 'facebook-jssdk'));
+
 
     header.bg-primary
       /! Top Bar
@@ -43,7 +61,7 @@ html lang="en"
             / a href="index.html"  Home
             = link_to "blog", articles_path
             = link_to "All user", users_path
-            - if logged_in?
+            - if user_signed_in?
               = link_to "logout", logout_path, method: :delete
               = link_to "hallo #{current_user.name}", user_path(current_user)
               = link_to "edit Profil", edit_user_path(current_user)
@@ -75,7 +93,7 @@ html lang="en"
               a href="index.html#skills"  Skills
             li
               a href="index.html#works"  Works
-            - if logged_in?
+            - if user_signed_in?
               li
                 = link_to "your profile", user_path(current_user)
                 
@@ -194,6 +212,13 @@ html lang="en"
   /       li= link_to "Link 1", "#"
   /       li= link_to "Link 2", "#"
   /       li= link_to "Link 3", "#"
+  // javascript:
+  //   function checkLoginState() {
+  //     FB.getLoginStatus(function(response) {
+  //       statusChangeCallback(response);
+  //     });
+  //   }
+    
   = debug(params) if Rails.env.development?
   footer
     p &copy; Company 2017

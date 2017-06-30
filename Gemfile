@@ -38,6 +38,17 @@ gem 'ckeditor'
 gem 'metamagic'
 gem 'will_paginate', '~> 3.1.1'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'devise'
+# email sending in the background
+gem 'delayed_job_active_record'
+#used to measure password strength and reject weak passwords
+gem 'devise_zxcvbn'
+# facebook login
+gem 'omniauth-facebook'
+# google login
+gem 'omniauth-google-oauth2'
+# stripe
+gem 'stripe'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

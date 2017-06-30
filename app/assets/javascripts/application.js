@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require ckeditor/init
 //= require bootstrap-sprockets
-//= require turbolinks
+
 //= require plugins
 //= require core
 //= require typed
