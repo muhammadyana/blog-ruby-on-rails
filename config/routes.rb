@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   
   # get 'users', to: 'users#index'
   #get 'pages/home'
-  root 'pages#home'
+  root 'articles#index'
 
 
 
