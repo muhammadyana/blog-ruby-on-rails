@@ -254,11 +254,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, "306389116161265", "88c39b87707c3e6803c10ad9b9d98dc1", 
-    callback_url:'http://localhost:3000/users/auth/facebook/callback',
+    callback_url:'https://dailyrails.herokuapp.com/users/auth/facebook/callback',
     provider_ignores_state: true,
     token_params: { parse: :json }
   config.omniauth :google_oauth2, "646748606185-cqbm9kcu6vcjv8jrf43lel3uk4kgv8rc.apps.googleusercontent.com", "-epNIpOAbhgqlPaswd1iMF76", 
-    callback_url:'http://localhost:3000/users/auth/google_oauth2/callback',
+    callback_url:'https://dailyrails.herokuapp.com/users/auth/google_oauth2/callback',
     provider_ignores_state: true,
     token_params: { parse: :json }
   # ==> Warden configuration
