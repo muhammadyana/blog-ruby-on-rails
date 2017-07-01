@@ -5,11 +5,14 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.all
+    @categories_paginate = Category.paginate(page: params[:page], :per_page => 2)
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    #@category = Category.friendly.find(params[:id])
+    @articles = @category.articles
   end
 
   # GET /categories/new

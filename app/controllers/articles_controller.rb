@@ -8,12 +8,13 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     #@articles = Article.all
-    @articleOrder = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
+    @articleOrder = Article.article_order(params[:page])
     @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
     # all.page(params[:page]).per(4)
     @articles_corousal = Article.all
+    # use scope
     @article_paginate = Article.paginate(page: params[:page], :per_page => 4)
-    @widgetArticle = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 3)
+    @widgetArticle = Article.widget_article(params[:page])
     
   end
 
@@ -21,6 +22,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @widgetArticle = Article.all.paginate(page: params[:page], :per_page => 3)
+    @categories = Category.all
   end
 
   # GET /articles/new
@@ -80,7 +82,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :image, :meta_keyword)
+      params.require(:article).permit(:title, :description, :image, :meta_keyword, category_ids: [])
     end
 
     def require_same_user

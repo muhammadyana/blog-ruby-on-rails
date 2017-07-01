@@ -7,5 +7,8 @@
   = f.input :image, as: :'file', class:'btn'
   .form-group
     .col-md-12.col-lg-12.col-sm-12
+      = f.association :categories, as: :'check_boxes', class:'checkbox-inline input_chekcbox'
+  .form-group
+    .col-md-12.col-lg-12.col-sm-12
       = f.submit nil, class: 'btn btn-primary'
       = link_to t('.cancel', default: t("helpers.links.cancel")), articles_path, class: 'btn btn-danger'

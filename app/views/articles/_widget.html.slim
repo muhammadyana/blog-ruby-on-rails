@@ -27,6 +27,12 @@
               span.input-label Search
         /! Latest Posts
         .widget.widget-posts
+          - @categories.each do |category|
+            span.label.label-info
+              = link_to category.name, category_path(category)
+              br
+              = category.articles.count
+            / = category.name
           h6.text-muted Latest Posts
           ul.list-posts
             - @widgetArticle.each do |article|

@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy'
     get 'signup', to: 'devise/registrations#new'
     get 'login', to: 'devise/sessions#new'
+    
   end
   as :user do
-    get 'login', to: 'devise/sessions#new'
+    # get 'login', to: 'devise/sessions#new'
+    # get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+    # put 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
  
   get 'session/new'

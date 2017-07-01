@@ -5,5 +5,43 @@ p
   = @category.name
 
 = link_to 'Edit', edit_category_path(@category)
-'|
 = link_to 'Back', categories_path
+.masonry.row
+  .masonry-sizer.col-sm-6.col-xs-12
+  - if @articles.present?
+    - @articles.each do |article|
+      .masonry-item.col-sm-6.col-xs-12
+        /! Post
+        article.post.item
+          .post-image
+            = image_tag article.image_url
+          .post-content
+            ul.post-meta
+              li
+                i.fa.fa-clock-o
+                span 
+                  | created 
+                  =time_ago_in_words(article.created_at)
+                  |  ago
+                //span = time_ago_in_words(article.updated_at)
+              li
+                i.fa.fa-user
+                span
+                  = link_to article.user.username, user_path(article.user.username) if article.user
+                  
+            h3.text-bold
+              = link_to article.title, article_path(article)
+            - if article.categories.any?
+              =render article.categories
+            p = article.description[0..120].html_safe
+            = link_to article_path(article), class: 'more'
+            
+              span
+  .masonry-item.col-sm-6.col-xs-12
+      
+    /! Pagination
+    //= will_paginate @article_paginate, :previous_label => '<', :next_label => '>'
+    / ul.pagination
+    /   li 
+    /     = will_paginate @article_paginate
+        / = paginate @articles

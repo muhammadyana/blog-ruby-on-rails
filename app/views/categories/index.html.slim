@@ -9,13 +9,16 @@ table
       th
 
   tbody
-    - @categories.each do |category|
+    - @categories_paginate.each do |category|
       tr
-        td = category.name
+        td = link_to category.name, category_path(category)
         td = link_to 'Show', category
-        td = link_to 'Edit', edit_category_path(category)
-        td = link_to 'Destroy', category, data: { confirm: 'Are you sure?' }, method: :delete
+        - if user_signed_in?
+          td = link_to 'Edit', edit_category_path(category)
+          td = link_to 'Destroy', category, data: { confirm: 'Are you sure?' }, method: :delete
+        else
+        td = category.articles.count
 
 br
-
+= will_paginate @categories_paginate, :previous_label => '<', :next_label => '>'
 = link_to 'New Category', new_category_path

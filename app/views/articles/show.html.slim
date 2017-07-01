@@ -72,7 +72,17 @@
           h4
             | Total Article 
             = @article.user.articles.count
-          
+          - if @article.categories.any?
+            = render @article.categories
+          / span.label.label-info
+          /     = render @article.categories
+          / - @article.categories.each do |article_categories|
+          /   span.badge
+          /     = link_to article_categories.name
+            br
+            / = article_categories.name
+          end
+          / = @article.categories
           hr.sep-line/
           h4.text-muted.mb-40
             span.typing Write a comment...
