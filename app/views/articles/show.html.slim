@@ -59,6 +59,11 @@
                 i.fa.fa-user
                 span
                   =link_to @article.user.name, user_path(@article.user) 
+              li
+                i.fa.fa-eye
+                span.text-center
+                  /= link_to article.user.username, user_path(article.user.username) if article.user
+                  = @article.impressionist_count(:filter=>:ip_address)  
                   
             h1 = @article.title
             p.lead = @article.description.html_safe

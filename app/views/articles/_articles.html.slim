@@ -20,7 +20,11 @@
                         i.fa.fa-user
                         span
                           = link_to article.user.username, user_path(article.user.username) if article.user
-                          
+                      li
+                        i.fa.fa-eye
+                        span.text-center
+                          /= link_to article.user.username, user_path(article.user.username) if article.user
+                          = article.impressionist_count(:filter=>:ip_address)   
                     h3.text-bold
                       = link_to article.title, article_path(article)
                     - if article.categories.any?

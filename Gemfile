@@ -28,6 +28,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 gem "letter_opener"
 gem 'carrierwave', '~> 1.0'
+# edit image / compress image
 gem "mini_magick"
 gem 'better_errors'   
 gem 'binding_of_caller'
@@ -38,6 +39,12 @@ gem 'ckeditor'
 gem 'metamagic'
 gem 'will_paginate', '~> 3.1.1'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+# search
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '5.x'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '5.x'
+#show view count
+gem 'impressionist'
+# login register authentication
 gem 'devise'
 # email sending in the background
 gem 'delayed_job_active_record'

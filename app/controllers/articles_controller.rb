@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  impressionist :action=> [:show,:index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   before_action :authenticate_user!, except: [:index, :show] #can't create article without login
@@ -6,8 +7,11 @@ class ArticlesController < ApplicationController
   before_action :current_user, only: [:edit, :update, :destroy]
   # GET /articles
   # GET /articles.json
+  
   def index
     #@articles = Article.all
+    # @article = Article.friendly.find(params[:id])
+    # impressionist(@article)
     @articleOrder = Article.article_order(params[:page])
     @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
     # all.page(params[:page]).per(4)
@@ -21,6 +25,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @article = Article.friendly.find(params[:id])
+    impressionist(@article)
     @widgetArticle = Article.all.paginate(page: params[:page], :per_page => 3)
     @categories = Category.all
   end

@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
 	#attr_accessor :slug
+	is_impressionable
 	belongs_to :user
 	has_many :article_categories
 	has_many :categories, through: :article_categories

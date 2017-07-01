@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/elastic/elasticsearch-rails.git
+  revision: 22b698aa3f4138db6ec1d1a082e8cd24f8132224
+  branch: 5.x
+  specs:
+    elasticsearch-model (5.0.1)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-rails (5.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,6 +114,14 @@ GEM
     devise_zxcvbn (4.4.1)
       devise
       zxcvbn-js (~> 4.4.1)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
     erubi (1.6.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -117,6 +136,8 @@ GEM
       activesupport (>= 4.2.0)
     hashie (3.5.5)
     i18n (0.8.4)
+    impressionist (1.6.0)
+      nokogiri (~> 1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -312,8 +333,11 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise_zxcvbn
+  elasticsearch-model!
+  elasticsearch-rails!
   font-awesome-rails
   friendly_id (~> 5.1.0)
+  impressionist
   jbuilder (~> 2.5)
   jquery
   jquery-rails
