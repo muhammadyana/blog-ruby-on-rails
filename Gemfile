@@ -27,7 +27,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 gem "letter_opener"
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 # edit image / compress image
 gem "mini_magick"
 gem 'better_errors'   
@@ -39,6 +39,8 @@ gem 'ckeditor'
 gem 'metamagic'
 gem 'will_paginate', '~> 3.1.1'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+# crop image
+gem 'carrierwave-crop'
 # search
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '5.x'
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '5.x'
