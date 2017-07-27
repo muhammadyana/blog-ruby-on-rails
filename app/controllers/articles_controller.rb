@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   before_action :authenticate_user!, except: [:index, :show] #can't create article without login
-  #before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :current_user, only: [:edit, :update, :destroy]
   # GET /articles
   # GET /articles.json
@@ -21,7 +21,10 @@ class ArticlesController < ApplicationController
     @widgetArticle = Article.widget_article(params[:page])
     
   end
-
+  def service
+    @article = Article.all
+    render json: @article
+  end
   # GET /articles/1
   # GET /articles/1.json
   def show

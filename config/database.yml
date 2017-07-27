@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: wetraining_production
-  username: wetraining
-  password: <%= ENV['WETRAINING_DATABASE_PASSWORD'] %>
+  database: yanawebi_blog
+  username: yanawebi_root
+  password: uetA9s@R?TKP

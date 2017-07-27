@@ -44,6 +44,8 @@
         article.post.single
           /! Image
           .post-image
+            / = image_tag @article.image.thumb.url
+
             = image_tag @article.image_url
             
           /! Content

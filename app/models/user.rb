@@ -52,7 +52,7 @@ class User < ApplicationRecord
 	      user.provider   = auth.provider
 	      user.uid        = auth.uid
 
-	     password = Devise.friendly_token[0,10]
+	     	password = Devise.friendly_token[0,10]
 
 	      user.password              = password
 	      user.password_confirmation = password
