@@ -19,6 +19,7 @@ Rails.application.routes.draw do
  
   get 'session/new'
   get 'users/index'
+  get 'search', to: 'search#search'
   resources :users
   mount Ckeditor::Engine => '/ckeditor'
   resources :articles

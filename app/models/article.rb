@@ -1,4 +1,8 @@
+require 'elasticsearch/model'
+
 class Article < ApplicationRecord
+	include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 	#attr_accessor :slug
 	is_impressionable
 	belongs_to :user
@@ -21,3 +25,4 @@ class Article < ApplicationRecord
 			CreateArticleMailer.article_created.deliver_now
 		end
 end
+Article.import # for auto sync model with elastic search
