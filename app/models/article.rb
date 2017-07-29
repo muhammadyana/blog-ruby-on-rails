@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   include Elasticsearch::Model::Callbacks
 	#attr_accessor :slug
 	is_impressionable
+	acts_as_taggable
 	belongs_to :user
 	has_many :article_categories
 	has_many :categories, through: :article_categories

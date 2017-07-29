@@ -13,7 +13,12 @@ class ArticlesController < ApplicationController
     # @article = Article.friendly.find(params[:id])
     # impressionist(@article)
     @articleOrder = Article.article_order(params[:page])
-    @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
+    end
+    # @articles = Article.order('created_at DESC').paginate(page: params[:page], :per_page => 4)
     # all.page(params[:page]).per(4)
     @articles_corousal = Article.all
     # use scope
@@ -91,7 +96,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :image, :meta_keyword, category_ids: [])
+      params.require(:article).permit(:title, :description, :image, :meta_keyword, :tag_list, category_ids: [])
     end
 
     def require_same_user
