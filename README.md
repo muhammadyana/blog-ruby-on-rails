@@ -15,6 +15,7 @@
 - [cloudinary](https://github.com/muhammadyana/cloudinary_gem)
 - [elasricsearch](https://github.com/muhammadyana/elasticsearch-rails)
 - [ckeditor](https://github.com/muhammadyana/ckeditor)
+- Gravatar
 - Bootsraps
 - Slim Rails
 
@@ -30,10 +31,7 @@ $ rake db:create
 ```bash
 $ rake db:migrate
 ```
-## MAKE DUMMY DATA
-```bash
-$ rake db:seed
-```
+
 ## RUN SERVER
 ```bash
 $ rails s
