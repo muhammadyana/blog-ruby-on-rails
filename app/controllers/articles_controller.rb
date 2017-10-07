@@ -13,6 +13,8 @@ class ArticlesController < ApplicationController
     # @article = Article.friendly.find(params[:id])
     # impressionist(@article)
     @articleOrder = Article.article_order(params[:page])
+    # @jasonObject = render json: @articleOrder
+    # puts JSON.pretty_generate(@articleOrder)
     if params[:tag]
       @articles = Article.tagged_with(params[:tag])
     else

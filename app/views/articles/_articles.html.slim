@@ -1,7 +1,12 @@
+        pre = JSON.pretty_generate(@articles)
+        pre = @articles
+        - str = '{"error":{"type":"unauthorized","message":"This page cannot be accessed without a valid API key."}}'
+        pre = JSON.pretty_generate(str)
         .masonry.row
           .masonry-sizer.col-sm-6.col-xs-12
           - if @articles.present?
             - @articles.each do |article|
+              / = JSON.pretty_generate(article)
               .masonry-item.col-sm-6.col-xs-12
                 /! Post
                 article.post.item

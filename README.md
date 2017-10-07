@@ -16,7 +16,7 @@
 - [elasricsearch](https://github.com/muhammadyana/elasticsearch-rails)
 - [ckeditor](https://github.com/muhammadyana/ckeditor)
 - Gravatar
-- Bootsraps
+- Bootstrap
 - Slim Rails
 
 ## INSTALL DEPENDENCIES
