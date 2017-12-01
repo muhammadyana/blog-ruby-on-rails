@@ -49,7 +49,7 @@ gem 'impressionist'
 # login register authentication
 gem 'devise'
 # email sending in the background
-gem 'delayed_job_active_record'
+# gem 'delayed_job_active_record'
 #used to measure password strength and reject weak passwords
 gem 'devise_zxcvbn'
 # facebook login
